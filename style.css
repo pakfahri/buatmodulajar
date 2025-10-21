@@ -24,7 +24,7 @@ body {
 }
 
 /* ------------------------------------------------ */
-/* --- STYLING HALAMAN LOGIN (PROPORSI NORMAL) --- */
+/* --- PERBAIKAN STYLING HALAMAN LOGIN --- */
 /* ------------------------------------------------ */
 .center-content {
     background: white; 
@@ -49,15 +49,23 @@ h1 { /* Judul Utama Login */
     margin-bottom: 15px;
 }
 
+/* --- PERBAIKAN INI PENTING UNTUK MENGHILANGKAN KOTAK-KOTAK --- */
 .form-container input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; 
+    
+    /* Properti Kritis: Membersihkan border dan memastikan tampilan standar */
+    border: 1px solid #ccc; /* Border tunggal abu-abu */
+    border-radius: 4px;      /* Sudut yang sedikit melengkung */
+    outline: none;           /* Menghilangkan outline aneh saat fokus */
+    box-shadow: none;        /* Menghilangkan shadow aneh */
+    
+    box-sizing: border-box; /* Memastikan padding dan border tidak menambah lebar total */
     font-size: 1rem; 
 }
+/* ------------------------------------------------------------ */
+
 
 .form-container button {
     width: 100%;
@@ -81,9 +89,8 @@ h1 { /* Judul Utama Login */
     font-size: 14px;
 }
 
-
 /* ------------------------------------------------ */
-/* --- STYLING DASHBOARD MINIMALIS --- */
+/* --- STYLING DASHBOARD MINIMALIS (TIDAK BERUBAH) --- */
 /* ------------------------------------------------ */
 .full-content {
     background: white; 
