@@ -1,104 +1,135 @@
 /* style.css */
 
-/* === Tampilan Dasar Global === */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Latar abu-abu terang */
-    margin: 0;
-    padding: 0;
-    color: #333;
-    /* Posisikan konten di tengah halaman */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+/* --- Tampilan Dasar & Global --- */
+html {
+    /* Mencegah scrollbar horizontal yang tidak diinginkan */
+    overflow-x: hidden; 
 }
 
-/* Kelas utilitas untuk menyembunyikan elemen */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; 
+    color: #333;
+    
+    /* KRITIS: Centering untuk halaman LOGIN */
+    display: flex;
+    justify-content: center; /* Centering horizontal */
+    align-items: center;     /* Centering vertical */
+    min-height: 100vh;
+    margin: 0; /* Menghilangkan margin default browser */
+    padding: 0;
+    width: 100%; /* Memastikan body mengambil lebar penuh */
+}
+
 .hidden {
     display: none !important;
 }
 
-/* === Styling Halaman Login/Form Terpusat (center-content) === */
-.center-content {
+/* Memastikan wrapper juga lebar penuh saat aktif */
+#app-wrapper {
+    width: 100%; 
+    min-height: 100vh;
+}
+
+/* --- Anti-Flicker --- */
+.auth-initializing #app-wrapper {
+    visibility: hidden; 
+    opacity: 0;
+}
+
+
+/* ------------------------------------------------ */
+/* --- STYLING BERBAGI (SHARED STYLES) --- */
+/* ------------------------------------------------ */
+
+/* Aturan yang berlaku untuk Login dan Dashboard (Default Sempit) */
+#auth-container, #content-container {
     background: white;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 400px;
+    /* KRITIS: Batasan default yang sempit */
+    max-width: 500px; 
     text-align: center;
+    box-sizing: border-box; /* Penting untuk perhitungan width */
+    margin: 0; /* Hapus margin yang mengganggu centering */
 }
-/* ... (CSS form login lainnya) ... */
 
+/* ------------------------------------------------ */
+/* --- STYLING HANYA DASHBOARD (OVERRIDE LEBAR) --- */
+/* ------------------------------------------------ */
 
-/* === Styling Dashboard Minimalis (full-content) === */
-.full-content {
-    background: white;
-    /* Box shadow sangat tipis */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-    width: 99%;
-    max-width: 1400px;
-    height: 98vh; /* Hampir memenuhi viewport */
-    padding: 3px; /* Padding sangat minimal */
-    border-radius: 5px;
-    /* Gunakan Flexbox untuk mengatur header dan iframe */
-    display: flex;
+#content-container {
+    /* KRITIS: Menggantikan max-width: 500px dengan 1000px */
+    max-width: 1000px; 
+    height: 98vh; /* Menggunakan tinggi penuh untuk frame aplikasi */
+    
+    /* Menyesuaikan kembali tampilan Flexbox untuk dashboard */
+    display: flex; 
     flex-direction: column;
+    text-align: left; /* Teks konten di dashboard normal */
+    
+    /* Mengatasi bug centering body saat max-width: 1000px */
+    width: 100%; /* Meregangkan container di dalam batas body flex */
+    padding: 3px; /* Mengikuti style dashboard minimalis */
 }
 
-/* Header Minimalis yang Sangat Pendek */
+/* ------------------------------------------------ */
+/* --- STYLING ELEMEN FORM LOGIN --- */
+/* ------------------------------------------------ */
+h1 { font-size: 2rem; color: #3b82f6; margin-bottom: 20px; }
+.form-container h2 { font-size: 1.5rem; color: #333; margin-top: 0; margin-bottom: 15px; }
+
+.form-container input {
+    width: 100%; /* Gunakan 100% dan box-sizing: border-box */
+    padding: 10px; 
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+    outline: none; 
+    box-shadow: none; 
+    box-sizing: border-box; 
+    font-size: 1rem; 
+}
+
+.form-container button {
+    width: 100%; padding: 10px; background-color: #3b82f6; color: white; border: none;
+    border-radius: 4px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;
+}
+.form-container button:hover { background-color: #2563eb; }
+
+.error-message { color: red; margin-top: 10px; font-size: 14px; }
+
+
+/* ------------------------------------------------ */
+/* --- STYLING ELEMEN DASHBOARD --- */
+/* ------------------------------------------------ */
+
 #dashboard-header {
-    background: white;
+    background: white; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Padding minimal: 2px atas/bawah */
-    padding: 2px 10px;
-    border-bottom: 1px solid #eee; /* Garis pemisah tipis */
-    flex-shrink: 0; /* Pastikan header tidak mengecil */
-    height: auto;
+    padding: 2px 10px; 
+    border-bottom: 1px solid #eee; 
+    flex-shrink: 0; 
+    height: auto; 
 }
 
-/* Perubahan Kunci 1: Tulisan Header SANGAT KECIL */
-.welcome-text {
-    font-size: 0.7rem; /* SANGAT KECIL untuk header minimalis */
-    font-weight: 500;
-    margin: 0;
-    padding: 0;
-    color: #4b5563;
-}
+.welcome-text { font-size: 0.7rem; font-weight: 500; margin: 0; padding: 0; color: #4b5563; }
+.welcome-text .profile-link { font-size: 0.65rem; color: #3b82f6; text-decoration: none; font-weight: bold; }
+.welcome-text .profile-link:hover { text-decoration: underline; }
 
-/* Perubahan Kunci 2: Tautan Profil Dibuat Sedikit Lebih Kecil Lagi */
-.welcome-text .profile-link {
-    font-size: 0.65rem; /* Lebih kecil dari teks utama */
-    color: #3b82f6;
-    text-decoration: none;
-    font-weight: bold;
-}
-.welcome-text .profile-link:hover {
-    text-decoration: underline;
-}
-
-/* Styling Tombol Logout (Abu-abu Gelap) */
 .small-logout-btn {
-    width: auto;
-    padding: 3px 7px; /* Padding minimalis */
-    font-size: 0.75rem; /* Ukuran font kecil */
-    background-color: #374151; /* Abu-abu gelap */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    width: auto; padding: 3px 7px; font-size: 0.75rem; background-color: #374151; color: white;
+    border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;
 }
-.small-logout-btn:hover {
-    background-color: #4b5563;
-}
+.small-logout-btn:hover { background-color: #4b5563; }
 
-/* Iframe agar terlihat seperti halaman utama */
 #genaimod-iframe {
-    flex-grow: 1; /* Iframe akan mengambil semua ruang sisa */
+    flex-grow: 1; /* Memastikan iframe mengambil sisa ruang vertikal */
+    width: 100%; /* Memastikan iframe mengambil lebar penuh dashboard */
     border: none;
-    margin-top: 3px; /* Jarak sedikit dari header */
+    margin-top: 3px; 
 }
