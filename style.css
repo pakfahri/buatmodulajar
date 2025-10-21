@@ -1,13 +1,12 @@
 /* style.css */
 
-/* --- Tampilan Dasar --- */
+/* --- Tampilan Dasar (Dark Mode) --- */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4; 
+    background-color: #121212; 
     margin: 0;
     padding: 0;
-    color: #333;
-    /* Membuat body menempati seluruh viewport */
+    color: #e0e0e0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,38 +19,42 @@ body {
 
 /* --- Styling Halaman Login --- */
 .center-content {
-    background: white;
-    padding: 30px;
+    background: #1e1e1e; /* lebih gelap dari putih sebelumnya */
+    padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     width: 90%;
-    max-width: 400px;
+    max-width: 250px;
     text-align: center;
 }
 
 h1 {
-    color: #3b82f6;
-    margin-bottom: 20px;
+    color: #60a5fa; /* biru lembut */
+    margin-bottom: 10px;
+    font-size: 1rem;
 }
 
 .form-container input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
+    padding: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #555;
     border-radius: 4px;
     box-sizing: border-box; 
+    font-size: 12px;
+    background-color: #2a2a2a; 
+    color: #f1f1f1;
 }
 
 .form-container button {
     width: 100%;
-    padding: 10px;
+    padding: 6px;
     background-color: #3b82f6;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
     transition: background-color 0.3s;
 }
 
@@ -60,38 +63,39 @@ h1 {
 }
 
 .error-message {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
+    color: #f87171; /* merah muda lembut */
+    margin-top: 8px;
+    font-size: 11px;
 }
 
-/* --- Styling Dashboard Minimalis --- */
+/* --- Styling Dashboard Minimalis (Dark Mode) --- */
 .full-content {
-    background: white; 
-    /* Shadow sangat tipis agar kotak pembungkus 'tidak terlihat' */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); 
-    width: 99%; 
-    max-width: 1400px; 
-    height: 98vh; /* Hampir penuh tinggi viewport */
-    padding: 5px; /* Padding sangat kecil untuk kesan bingkai tipis */
+    background: #1a1a1a;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+    width: 99%;
+    max-width: 800px;
+    height: 95vh;
+    padding: 2px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
 }
 
-/* Header Minimalis (Hanya Bagian Atas) */
+/* Header Minimalis */
 .dashboard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 15px; /* Padding tipis */
-    border-bottom: 1px solid #eee; /* Garis tipis pemisah */
+    padding: 4px 10px;
+    border-bottom: 1px solid #333;
     flex-shrink: 0; 
+    background-color: #222;
 }
 
 .welcome-text {
-    font-size: 1.2rem; 
+    font-size: 0.9rem;
     font-weight: bold;
+    color: #f1f1f1;
     margin: 0;
     padding: 0;
 }
@@ -99,22 +103,24 @@ h1 {
 /* Tombol Logout Kecil */
 .small-logout-btn {
     width: auto; 
-    padding: 4px 10px; 
-    font-size: 0.8rem; 
-    background-color: #dc3545; 
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    background-color: #ef4444;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .small-logout-btn:hover {
-    background-color: #c82333;
+    background-color: #dc2626;
 }
 
 /* Iframe agar terlihat seperti halaman utama */
 #genaimod-iframe {
-    flex-grow: 1; /* Iframe mengambil semua sisa ruang vertikal */
+    flex-grow: 1;
     border: none;
-    margin-top: 5px; /* Jarak kecil dari header */
+    margin-top: 5px;
+    background-color: #121212;
 }
