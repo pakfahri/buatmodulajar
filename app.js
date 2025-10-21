@@ -26,21 +26,21 @@ const firebaseConfig = {
 };
 
 // ===============================================
-// 2. DAFTAR EMAIL YANG DIIZINKAN (WAJIB GANTI!)
+// 2. DAFTAR EMAIL YANG DIIZINKAN (WAJIB PERIKSA!)
+// Pastikan email yang Anda gunakan untuk login ADA di daftar ini.
 // ===============================================
-// Hanya email yang ada di array ini yang akan mendapatkan akses konten setelah login.
 const ALLOWED_EMAILS = [
     "admin@modul.id",
-    "guru-valid@sekolah.com",
-    // Tambahkan semua email lain yang diizinkan di sini
+    "guruvalid@gmail.com",
+    // TAMBAHKAN SEMUA EMAIL LAIN YANG DIIZINKAN DI SINI DENGAN EJAAN DAN CASE YANG TEPAT!
+    // Contoh: "emailandauntuktes@gmail.com"
 ];
 
 // ===============================================
 // 3. VARIABEL AUTO-LOGOUT
 // ===============================================
-// 5 * 60 * 1000 = 300.000 ms = 5 menit. Ganti jika perlu.
-const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000; 
-let logoutTimer; // Variabel untuk menyimpan ID timer
+const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000; // 5 menit
+let logoutTimer; 
 
 
 // ===============================================
@@ -48,7 +48,7 @@ let logoutTimer; // Variabel untuk menyimpan ID timer
 // ===============================================
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); // Dapatkan instance Autentikasi
+const auth = getAuth(app); 
 
 
 // ===============================================
@@ -96,14 +96,10 @@ function logoutUser() {
 // 6. FUNGSI AUTO-LOGOUT
 // ===============================================
 
-// Mengatur (atau mereset) timer logout
 function resetLogoutTimer() {
-    // Hentikan timer sebelumnya
     clearTimeout(logoutTimer); 
 
-    // Atur timer baru
     logoutTimer = setTimeout(() => {
-        // Cek apakah pengguna masih terautentikasi sebelum logout
         if (auth.currentUser) {
             logoutUser();
             alert('Anda telah di-logout secara otomatis karena tidak ada aktivitas selama ' + (INACTIVITY_TIMEOUT_MS / 60000) + ' menit.');
@@ -111,7 +107,6 @@ function resetLogoutTimer() {
     }, INACTIVITY_TIMEOUT_MS);
 }
 
-// Menghentikan timer (dipanggil saat logout manual atau logout paksa)
 function stopLogoutTimer() {
     clearTimeout(logoutTimer);
 }
@@ -125,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginButton = document.getElementById('login-button');
     const logoutButton = document.getElementById('logout-button');
     
-    // Menghubungkan Tombol Login (Solusi untuk 'ReferenceError')
+    // Menghubungkan Tombol Login
     if (loginButton) {
         loginButton.addEventListener('click', loginUser);
     }
@@ -136,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Menambahkan Event Listener untuk mendeteksi aktivitas pengguna
-    // Hanya reset timer jika pengguna sedang login
     const activityHandler = () => {
         if (auth.currentUser) {
             resetLogoutTimer();
@@ -163,7 +157,7 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         const userEmail = user.email;
 
-        // FILTER AKSES: Cek apakah email pengguna ada di daftar yang diizinkan
+        // FILTER AKSES: Pengecekan Kritis
         if (ALLOWED_EMAILS.includes(userEmail)) {
             // Diizinkan: Tampilkan konten utama
             authContainer.classList.add('hidden');
@@ -174,17 +168,20 @@ onAuthStateChanged(auth, (user) => {
             resetLogoutTimer(); 
 
         } else {
-            // TIDAK Diizinkan: Paksa logout dan berikan pesan error
+            // TIDAK Diizinkan: Inilah yang menyebabkan Anda langsung ter-logout
             stopLogoutTimer();
-            logoutUser();
-            errorDisplay.textContent = "Akses ditolak. Email Anda tidak terdaftar sebagai pengguna yang diizinkan.";
-            authContainer.classList.remove('hidden');
-            contentContainer.classList.add('hidden');
+            // Panggil logout di timeout untuk memastikan sesi ditutup sebelum pesan ditampilkan
+            setTimeout(() => {
+                logoutUser();
+                errorDisplay.textContent = `Akses ditolak. Email (${userEmail}) tidak terdaftar sebagai pengguna yang diizinkan.`;
+                authContainer.classList.remove('hidden');
+                contentContainer.classList.add('hidden');
+            }, 100); 
         }
 
     } else {
         // Pengguna belum login (atau sudah logout)
-        stopLogoutTimer(); // Pastikan timer mati saat tidak ada pengguna
+        stopLogoutTimer(); 
         authContainer.classList.remove('hidden');
         contentContainer.classList.add('hidden');
     }
