@@ -8,17 +8,15 @@ html {
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #1a1a1a; /* Ubah ke warna gelap */
-    color: #e0e0e0; /* Ubah teks ke warna terang untuk kontras */
-    
-    /* KRITIS: Centering untuk halaman LOGIN */
-    display: flex;
-    justify-content: center; /* Centering horizontal */
-    align-items: center;     /* Centering vertical */
-    min-height: 100vh;
+    background-color: #1a1a1a; /* Warna gelap */
+    color: #e0e0e0; /* Warna teks terang */
     margin: 0; /* Menghilangkan margin default browser */
     padding: 0;
-    width: 100%; /* Memastikan body mengambil lebar penuh */
+    /* PENTING: Hapus properti flex dari body */
+}
+
+html, body {
+    height: 100%; /* Pastikan tinggi penuh untuk kontainer flex */
 }
 
 .hidden {
@@ -28,7 +26,7 @@ body {
 /* Memastikan wrapper juga lebar penuh saat aktif */
 #app-wrapper {
     width: 100%; 
-    min-height: 100vh;
+    /* Hapus min-height: 100vh; akan diatur khusus untuk login */
 }
 
 /* --- Anti-Flicker --- */
@@ -37,13 +35,31 @@ body {
     opacity: 0;
 }
 
+
+/* ============================================================= */
+/* --- PERBAIKAN KRITIS: PEMUSATAN KHUSUS HALAMAN LOGIN --- */
+/* ============================================================= */
+
+/* 
+  Aturan ini akan diaktifkan HANYA jika #auth-container (kotak login) 
+  terlihat di dalam #app-wrapper. Ini akan menjadikan #app-wrapper 
+  sebagai kontainer flex yang memusatkan isinya.
+*/
+body:not(.auth-initializing) #app-wrapper:has(#auth-container:not(.hidden)) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Buat wrapper setinggi layar untuk pusat vertikal */
+}
+
+
 /* ------------------------------------------------ */
 /* --- STYLING BERBAGI (SHARED STYLES) --- */
 /* ------------------------------------------------ */
 
 /* Aturan yang berlaku untuk Login dan Dashboard (Default Sempit) */
 #auth-container, #content-container {
-    background: #2d2d2d; /* Ubah ke warna gelap */
+    background: #2d2d2d; /* Warna gelap */
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Bayangan lebih gelap */
@@ -77,7 +93,7 @@ body {
 /* ------------------------------------------------ */
 /* --- STYLING ELEMEN FORM LOGIN --- */
 /* ------------------------------------------------ */
-h1 { font-size: 2rem; color: #64b5f6; margin-bottom: 20px; } /* Warna biru terang untuk kontras */
+h1 { font-size: 2rem; color: #64b5f6; margin-bottom: 20px; } /* Warna biru terang */
 .form-container h2 { font-size: 1.5rem; color: #e0e0e0; margin-top: 0; margin-bottom: 15px; }
 
 .form-container input {
@@ -100,7 +116,7 @@ h1 { font-size: 2rem; color: #64b5f6; margin-bottom: 20px; } /* Warna biru teran
 }
 .form-container button:hover { background-color: #1565c0; }
 
-.error-message { color: #ff6b6b; margin-top: 10px; font-size: 14px; } /* Warna error yang lebih terang */
+.error-message { color: #ff6b6b; margin-top: 10px; font-size: 14px; } /* Warna error terang */
 
 
 /* ------------------------------------------------ */
@@ -109,6 +125,31 @@ h1 { font-size: 2rem; color: #64b5f6; margin-bottom: 20px; } /* Warna biru teran
 
 #dashboard-header {
     background: #2d2d2d; /* Background gelap */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 10px; 
+    border-bottom: 1px solid #444; /* Border lebih gelap */
+    flex-shrink: 0; 
+    height: auto; 
+}
+
+.welcome-text { font-size: 0.7rem; font-weight: 500; margin: 0; padding: 0; color: #b0b0b0; }
+.welcome-text .profile-link { font-size: 0.65rem; color: #64b5f6; text-decoration: none; font-weight: bold; }
+.welcome-text .profile-link:hover { text-decoration: underline; }
+
+.small-logout-btn {
+    width: auto; padding: 3px 7px; font-size: 0.75rem; background-color: #424242; color: white;
+    border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s;
+}
+.small-logout-btn:hover { background-color: #616161; }
+
+#genaimod-iframe {
+    flex-grow: 1; /* Memastikan iframe mengambil sisa ruang vertikal */
+    width: 100%; /* Memastikan iframe mengambil lebar penuh dashboard */
+    border: none;
+    margin-top: 3px; 
+}    background: #2d2d2d; /* Background gelap */
     display: flex;
     justify-content: space-between;
     align-items: center;
