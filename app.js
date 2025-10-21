@@ -1,7 +1,7 @@
 // app.js
 
 // ===============================================
-// Import Modul Firebase (Gunakan versi 12.4.0)
+// Import Modul Firebase (Menggunakan ES Module dari CDN)
 // ===============================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
@@ -26,14 +26,13 @@ const firebaseConfig = {
 };
 
 // ===============================================
-// 2. DAFTAR EMAIL YANG DIIZINKAN (WAJIB PERIKSA!)
-// Pastikan email yang Anda gunakan untuk login ADA di daftar ini.
+// 2. DAFTAR EMAIL YANG DIIZINKAN (WAJIB PERIKSA DAN TAMBAH EMAIL ANDA!)
+// Jika Anda langsung logout, berarti email Anda TIDAK ADA di daftar ini.
 // ===============================================
 const ALLOWED_EMAILS = [
     "admin@modul.id",
-    "guruvalid@gmail.com",
-    // TAMBAHKAN SEMUA EMAIL LAIN YANG DIIZINKAN DI SINI DENGAN EJAAN DAN CASE YANG TEPAT!
-    // Contoh: "emailandauntuktes@gmail.com"
+    "fahri.bahari@gmail.com",
+    // TAMBAHKAN SEMUA EMAIL YANG DIIZINKAN DI SINI (Contoh: "email_anda_testing@gmail.com")
 ];
 
 // ===============================================
@@ -67,8 +66,9 @@ function loginUser() {
     }
 
     signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
+        .then((userCredential) => {
             console.log("Login berhasil.");
+            // onAuthStateChanged akan mengambil alih untuk filter akses
         })
         .catch((error) => {
             let errorMessage = "Login Gagal. Email atau kata sandi salah.";
@@ -113,7 +113,7 @@ function stopLogoutTimer() {
 
 
 // ===============================================
-// 7. EVENT LISTENERS & LOGIKA UTAMA
+// 7. EVENT LISTENERS & LOGIKA UTAMA (Memastikan Tombol Bekerja)
 // ===============================================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutButton.addEventListener('click', logoutUser);
     }
     
-    // Menambahkan Event Listener untuk mendeteksi aktivitas pengguna
+    // Menambahkan Event Listener untuk mendeteksi aktivitas pengguna (Auto-logout)
     const activityHandler = () => {
         if (auth.currentUser) {
             resetLogoutTimer();
@@ -168,9 +168,10 @@ onAuthStateChanged(auth, (user) => {
             resetLogoutTimer(); 
 
         } else {
-            // TIDAK Diizinkan: Inilah yang menyebabkan Anda langsung ter-logout
+            // TIDAK Diizinkan: Pemicu Logout Instan Anda
             stopLogoutTimer();
-            // Panggil logout di timeout untuk memastikan sesi ditutup sebelum pesan ditampilkan
+            
+            // Panggil logout di timeout singkat untuk menghindari race condition
             setTimeout(() => {
                 logoutUser();
                 errorDisplay.textContent = `Akses ditolak. Email (${userEmail}) tidak terdaftar sebagai pengguna yang diizinkan.`;
