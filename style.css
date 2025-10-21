@@ -2,10 +2,10 @@
 
 /* --- KRITIS: Memaksa Lebar Penuh pada Elemen Root --- */
 html, body {
-    width: 100%; /* Memastikan lebar 100% */
+    width: 100%; /* MEMASTIKAN LEBAR 100% */
     margin: 0;
     padding: 0;
-    /* Optional: Mencegah scrollbar horizontal jika 99vw melebihi batas */
+    /* Mencegah scrollbar horizontal yang mungkin muncul saat menggunakan 100vw */
     overflow-x: hidden; 
 }
 
@@ -33,12 +33,11 @@ body {
 }
 
 /* ------------------------------------------------ */
-/* --- STYLING HALAMAN LOGIN (DIKUATKAN) --- */
+/* --- STYLING HALAMAN LOGIN (DITENGAHKAN) --- */
 /* ------------------------------------------------ */
 
-/* Kontainer luar yang menampung form login saat terlihat */
+/* Kontainer luar yang menampung form login saat terlihat (untuk centering) */
 #auth-container {
-    /* Menambahkan properti centering agar form login tetap di tengah */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,10 +79,10 @@ h1 { font-size: 2rem; color: #3b82f6; margin-bottom: 20px; }
     background: white; 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); 
     
-    /* KRITIS: Peregangan Penuh Desktop */
-    width: 99vw; /* Ambil 99% lebar viewport */
-    max-width: none; /* Menghilangkan semua batasan lebar */
-    margin: 0 auto; /* Tetap menengahkan (untuk sisa 1vw di kiri/kanan) */
+    /* KRITIS: Perubahan untuk Lebar Penuh */
+    width: 100vw; /* Mengambil 100% lebar viewport */
+    max-width: none; 
+    margin: 0; /* MENGHILANGKAN SEMUA MARGIN/PENENGAHAN */
 
     height: 98vh; 
     padding: 3px; 
