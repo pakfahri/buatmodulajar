@@ -3,7 +3,7 @@
 /* --- Tampilan Dasar --- */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4; /* Background body abu-abu muda */
+    background-color: #f4f4f4; 
     margin: 0;
     padding: 0;
     color: #333;
@@ -17,9 +17,9 @@ body {
     display: none !important;
 }
 
-/* --- Styling Halaman Login (Background Tetap Putih) --- */
+/* --- Styling Halaman Login (Dibiarkan sama) --- */
 .center-content {
-    background: white; /* Putih */
+    background: white; 
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -32,7 +32,7 @@ body {
 
 /* --- Styling Dashboard Minimalis --- */
 .full-content {
-    background: white; /* Background frame dashboard tetap putih */
+    background: white; 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); 
     width: 99%; 
     max-width: 1400px; 
@@ -43,9 +43,9 @@ body {
     flex-direction: column;
 }
 
-/* Header Minimalis (Background Tetap Putih) */
+/* Header Minimalis yang Sangat Pendek */
 #dashboard-header {
-    background: white; /* Background header tetap putih */
+    background: white; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,17 +56,19 @@ body {
     height: auto; 
 }
 
-/* Perubahan 1 & 2: Tulisan Header Sangat Kecil dan Link */
+/* Perubahan Kunci 1: Tulisan Header SANGAT KECIL */
 .welcome-text {
     font-size: 0.7rem; /* SANGAT KECIL */
     font-weight: 500;
     margin: 0;
     padding: 0;
-    color: #4b5563; /* Warna teks agak abu-abu */
+    color: #4b5563; 
 }
 
+/* Perubahan Kunci 2: Tautan Profil Dibuat Sedikit Lebih Kecil Lagi */
 .welcome-text .profile-link {
-    color: #3b82f6; /* Warna biru untuk link */
+    font-size: 0.65rem; /* Lebih kecil dari teks utama */
+    color: #3b82f6; 
     text-decoration: none;
     font-weight: bold;
 }
@@ -74,15 +76,12 @@ body {
     text-decoration: underline;
 }
 
-/* Perubahan 3: Styling Tombol Logout (Abu-abu Gelap) */
+/* Styling Tombol Logout (Abu-abu Gelap) */
 .small-logout-btn {
     width: auto; 
     padding: 3px 7px; 
     font-size: 0.75rem; 
-    
-    /* Warna abu-abu gelap dari skema genaimod */
     background-color: #374151; 
-    
     color: white;
     border: none;
     border-radius: 4px;
