@@ -1,13 +1,11 @@
 /* style.css */
 
-/* --- Tampilan Dasar --- */
+/* --- Bagian Dasar (Disingkat untuk fokus pada perubahan) --- */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4; 
     margin: 0;
     padding: 0;
-    color: #333;
-    /* Membuat body menempati seluruh viewport */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,103 +16,65 @@ body {
     display: none !important;
 }
 
-/* --- Styling Halaman Login --- */
-.center-content {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-}
-
-h1 {
-    color: #3b82f6;
-    margin-bottom: 20px;
-}
-
-.form-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; 
-}
-
-.form-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-.form-container button:hover {
-    background-color: #2563eb;
-}
-
-.error-message {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
-}
-
 /* --- Styling Dashboard Minimalis --- */
 .full-content {
     background: white; 
-    /* Shadow sangat tipis agar kotak pembungkus 'tidak terlihat' */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); 
     width: 99%; 
     max-width: 1400px; 
-    height: 98vh; /* Hampir penuh tinggi viewport */
-    padding: 5px; /* Padding sangat kecil untuk kesan bingkai tipis */
+    height: 98vh; 
+    padding: 3px; /* Padding sangat kecil untuk bingkai super tipis */
     border-radius: 5px;
     display: flex;
     flex-direction: column;
 }
 
-/* Header Minimalis (Hanya Bagian Atas) */
-.dashboard-header {
+/* Perubahan Utama: Header Lebih Pendek */
+#dashboard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 15px; /* Padding tipis */
-    border-bottom: 1px solid #eee; /* Garis tipis pemisah */
+    /* Kurangi padding vertikal agar frame lebih pendek dan pas dengan tulisan */
+    padding: 4px 10px; 
+    border-bottom: 1px solid #eee; 
     flex-shrink: 0; 
+    height: auto; /* Pastikan tinggi disesuaikan dengan konten (tulisan) */
 }
 
 .welcome-text {
-    font-size: 1.2rem; 
+    font-size: 1rem; /* Sedikit dikecilkan agar frame pas */
     font-weight: bold;
     margin: 0;
     padding: 0;
 }
 
-/* Tombol Logout Kecil */
+/* Perubahan Utama: Styling Tombol Logout (Warna Gelap) */
 .small-logout-btn {
     width: auto; 
-    padding: 4px 10px; 
+    padding: 4px 8px; /* Padding sangat kecil */
     font-size: 0.8rem; 
-    background-color: #dc3545; 
+    
+    /* GANTI WARNA LATAR BELAKANG agar serasi dengan genaimod.html */
+    background-color: #4b5563; /* Warna gelap dari genaimod.html snippet */
+    
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-left: 10px; /* Jarak dari tulisan di kiri */
 }
 .small-logout-btn:hover {
-    background-color: #c82333;
+    background-color: #1f2937; /* Warna yang lebih gelap saat hover */
 }
 
 /* Iframe agar terlihat seperti halaman utama */
 #genaimod-iframe {
-    flex-grow: 1; /* Iframe mengambil semua sisa ruang vertikal */
+    flex-grow: 1; 
     border: none;
-    margin-top: 5px; /* Jarak kecil dari header */
+    margin-top: 3px; /* Jarak sangat kecil dari header */
 }
+
+/* --- (Pertahankan semua CSS untuk form login di sini) --- */
+.center-content { /* ... (CSS login) ... */ }
+/* ... dst ... */
