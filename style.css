@@ -17,7 +17,9 @@ body {
     display: none !important;
 }
 
-/* --- Styling Halaman Login (Dibiarkan sama) --- */
+/* ------------------------------------------------ */
+/* --- PERBAIKAN STYLING HALAMAN LOGIN (DIKUATKAN) --- */
+/* ------------------------------------------------ */
 .center-content {
     background: white; 
     padding: 30px;
@@ -27,10 +29,56 @@ body {
     max-width: 400px;
     text-align: center;
 }
-/* ... (CSS form login lainnya) ... */
+
+h1 { /* Judul Utama Login */
+    color: #3b82f6;
+    margin-bottom: 20px;
+    font-size: 2rem; /* Ukuran standar yang baik */
+}
+
+.form-container h2 { /* Sub-judul "Masuk" */
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+    font-size: 1rem; /* Font input dikembalikan ke ukuran normal */
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #2563eb;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
 
 
-/* --- Styling Dashboard Minimalis --- */
+/* ------------------------------------------------ */
+/* --- STYLING DASHBOARD MINIMALIS (TIDAK BERUBAH) --- */
+/* ------------------------------------------------ */
 .full-content {
     background: white; 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); 
@@ -43,31 +91,28 @@ body {
     flex-direction: column;
 }
 
-/* Header Minimalis yang Sangat Pendek */
 #dashboard-header {
     background: white; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Padding sangat minimal agar tinggi header pas dengan tulisan */
     padding: 2px 10px; 
     border-bottom: 1px solid #eee; 
     flex-shrink: 0; 
     height: auto; 
 }
 
-/* Perubahan Kunci 1: Tulisan Header SANGAT KECIL */
+/* Tulisan Header SANGAT KECIL (Sesuai Permintaan Sebelumnya) */
 .welcome-text {
-    font-size: 0.7rem; /* SANGAT KECIL */
+    font-size: 0.7rem; 
     font-weight: 500;
     margin: 0;
     padding: 0;
     color: #4b5563; 
 }
 
-/* Perubahan Kunci 2: Tautan Profil Dibuat Sedikit Lebih Kecil Lagi */
 .welcome-text .profile-link {
-    font-size: 0.65rem; /* Lebih kecil dari teks utama */
+    font-size: 0.65rem; 
     color: #3b82f6; 
     text-decoration: none;
     font-weight: bold;
@@ -76,7 +121,7 @@ body {
     text-decoration: underline;
 }
 
-/* Styling Tombol Logout (Abu-abu Gelap) */
+/* Tombol Logout Kecil (Abu-abu Gelap) */
 .small-logout-btn {
     width: auto; 
     padding: 3px 7px; 
@@ -92,7 +137,6 @@ body {
     background-color: #4b5563; 
 }
 
-/* Iframe agar terlihat seperti halaman utama */
 #genaimod-iframe {
     flex-grow: 1; 
     border: none;
