@@ -3,7 +3,7 @@
 /* --- Tampilan Dasar --- */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4; 
+    background-color: #f4f4f4; /* Background body abu-abu muda */
     margin: 0;
     padding: 0;
     color: #333;
@@ -17,9 +17,9 @@ body {
     display: none !important;
 }
 
-/* --- Styling Halaman Login (Dibiarkan sama) --- */
+/* --- Styling Halaman Login (Background Tetap Putih) --- */
 .center-content {
-    background: white;
+    background: white; /* Putih */
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -28,54 +28,59 @@ body {
     text-align: center;
 }
 /* ... (CSS form login lainnya) ... */
-.error-message {
-    color: red;
-    margin-top: 10px;
-    font-size: 14px;
-}
 
 
 /* --- Styling Dashboard Minimalis --- */
 .full-content {
-    background: white; 
+    background: white; /* Background frame dashboard tetap putih */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); 
     width: 99%; 
     max-width: 1400px; 
     height: 98vh; 
-    padding: 3px; /* Bingkai super tipis */
+    padding: 3px; 
     border-radius: 5px;
     display: flex;
     flex-direction: column;
 }
 
-/* Header Minimalis yang Sangat Pendek */
+/* Header Minimalis (Background Tetap Putih) */
 #dashboard-header {
+    background: white; /* Background header tetap putih */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 10px; /* Padding minimal agar frame pendek */
+    /* Padding sangat minimal agar tinggi header pas dengan tulisan */
+    padding: 2px 10px; 
     border-bottom: 1px solid #eee; 
     flex-shrink: 0; 
     height: auto; 
 }
 
-/* Perubahan 1: Mengecilkan ukuran font 'Selamat Datang' */
+/* Perubahan 1 & 2: Tulisan Header Sangat Kecil dan Link */
 .welcome-text {
-    font-size: 0.9rem; /* Lebih kecil dari 1.0rem/1.2rem sebelumnya */
-    font-weight: bold;
+    font-size: 0.7rem; /* SANGAT KECIL */
+    font-weight: 500;
     margin: 0;
     padding: 0;
-    /* Memberi jarak sedikit dari elemen lain */
-    margin-right: 15px; 
+    color: #4b5563; /* Warna teks agak abu-abu */
 }
 
-/* Perubahan 2 & 3: Styling Tombol Logout (Abu-abu) */
+.welcome-text .profile-link {
+    color: #3b82f6; /* Warna biru untuk link */
+    text-decoration: none;
+    font-weight: bold;
+}
+.welcome-text .profile-link:hover {
+    text-decoration: underline;
+}
+
+/* Perubahan 3: Styling Tombol Logout (Abu-abu Gelap) */
 .small-logout-btn {
     width: auto; 
-    padding: 3px 7px; /* Padding sangat kecil */
-    font-size: 0.75rem; /* Font tombol juga dikecilkan */
+    padding: 3px 7px; 
+    font-size: 0.75rem; 
     
-    /* GANTI WARNA LATAR BELAKANG menjadi abu-abu gelap */
+    /* Warna abu-abu gelap dari skema genaimod */
     background-color: #374151; 
     
     color: white;
@@ -85,7 +90,7 @@ body {
     transition: background-color 0.3s;
 }
 .small-logout-btn:hover {
-    background-color: #4b5563; /* Warna abu-abu yang sedikit lebih terang saat hover */
+    background-color: #4b5563; 
 }
 
 /* Iframe agar terlihat seperti halaman utama */
