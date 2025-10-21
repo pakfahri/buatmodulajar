@@ -132,7 +132,9 @@
         #output-container th, 
         #output-container td,
         #output-container strong {
-            font-size: 0.9375rem; /* Sekitar 15px - sedikit lebih kecil dari default */
+            font-size: 0.875rem; /* DIUBAH: Sekarang 14px (text-sm) */
+            /* Word break for non-breaking text (NIP, long URL, etc.) */
+            word-break: break-all; /* Memecah kata non-breaking secara agresif */
             word-wrap: break-word; 
             overflow-wrap: break-word;
         }
@@ -147,14 +149,14 @@
             text-align: center; 
         }
         #output-container h2 { 
-            font-size: 1.35rem; /* Dikecilkan dari 1.5rem */
+            font-size: 1.25rem; /* Dikecilkan lagi */
             font-weight: 600; 
             margin-top: 1.5rem; 
             margin-bottom: 0.75rem; 
             color: #e5e7eb; 
         }
         #output-container h3 { 
-            font-size: 1.15rem; /* Dikecilkan dari 1.25rem */
+            font-size: 1.05rem; /* Dikecilkan lagi */
             font-weight: 600; 
             margin-top: 1.25rem; 
             margin-bottom: 0.5rem; 
