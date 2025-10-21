@@ -86,14 +86,14 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px 10px;
+    padding: 1px 10px;
     border-bottom: 1px solid #333;
     flex-shrink: 0; 
-    background-color: #222;
+    background-color: #1e1e1e;
 }
 
 .welcome-text {
-    font-size: 0.9rem;
+    font-size: 0.5rem;
     font-weight: bold;
     color: #f1f1f1;
     margin: 0;
@@ -104,7 +104,7 @@ h1 {
 .small-logout-btn {
     width: auto; 
     padding: 3px 8px;
-    font-size: 0.7rem;
+    font-size: 0.5rem;
     background-color: #ef4444;
     color: white;
     border: none;
