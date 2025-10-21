@@ -1,11 +1,12 @@
 /* style.css */
 
-/* --- Bagian Dasar (Disingkat untuk fokus pada perubahan) --- */
+/* --- Tampilan Dasar --- */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4; 
     margin: 0;
     padding: 0;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,6 +17,24 @@ body {
     display: none !important;
 }
 
+/* --- Styling Halaman Login (Dibiarkan sama) --- */
+.center-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+/* ... (CSS form login lainnya) ... */
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
 /* --- Styling Dashboard Minimalis --- */
 .full-content {
     background: white; 
@@ -23,58 +42,55 @@ body {
     width: 99%; 
     max-width: 1400px; 
     height: 98vh; 
-    padding: 3px; /* Padding sangat kecil untuk bingkai super tipis */
+    padding: 3px; /* Bingkai super tipis */
     border-radius: 5px;
     display: flex;
     flex-direction: column;
 }
 
-/* Perubahan Utama: Header Lebih Pendek */
+/* Header Minimalis yang Sangat Pendek */
 #dashboard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Kurangi padding vertikal agar frame lebih pendek dan pas dengan tulisan */
-    padding: 4px 10px; 
+    padding: 4px 10px; /* Padding minimal agar frame pendek */
     border-bottom: 1px solid #eee; 
     flex-shrink: 0; 
-    height: auto; /* Pastikan tinggi disesuaikan dengan konten (tulisan) */
+    height: auto; 
 }
 
+/* Perubahan 1: Mengecilkan ukuran font 'Selamat Datang' */
 .welcome-text {
-    font-size: 1rem; /* Sedikit dikecilkan agar frame pas */
+    font-size: 0.9rem; /* Lebih kecil dari 1.0rem/1.2rem sebelumnya */
     font-weight: bold;
     margin: 0;
     padding: 0;
+    /* Memberi jarak sedikit dari elemen lain */
+    margin-right: 15px; 
 }
 
-/* Perubahan Utama: Styling Tombol Logout (Warna Gelap) */
+/* Perubahan 2 & 3: Styling Tombol Logout (Abu-abu) */
 .small-logout-btn {
     width: auto; 
-    padding: 4px 8px; /* Padding sangat kecil */
-    font-size: 0.8rem; 
+    padding: 3px 7px; /* Padding sangat kecil */
+    font-size: 0.75rem; /* Font tombol juga dikecilkan */
     
-    /* GANTI WARNA LATAR BELAKANG agar serasi dengan genaimod.html */
-    background-color: #4b5563; /* Warna gelap dari genaimod.html snippet */
+    /* GANTI WARNA LATAR BELAKANG menjadi abu-abu gelap */
+    background-color: #374151; 
     
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-left: 10px; /* Jarak dari tulisan di kiri */
 }
 .small-logout-btn:hover {
-    background-color: #1f2937; /* Warna yang lebih gelap saat hover */
+    background-color: #4b5563; /* Warna abu-abu yang sedikit lebih terang saat hover */
 }
 
 /* Iframe agar terlihat seperti halaman utama */
 #genaimod-iframe {
     flex-grow: 1; 
     border: none;
-    margin-top: 3px; /* Jarak sangat kecil dari header */
+    margin-top: 3px; 
 }
-
-/* --- (Pertahankan semua CSS untuk form login di sini) --- */
-.center-content { /* ... (CSS login) ... */ }
-/* ... dst ... */
