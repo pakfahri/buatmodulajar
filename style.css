@@ -17,8 +17,14 @@ body {
     display: none !important;
 }
 
+/* --- KRITIS: Class Inisialisasi (Menyembunyikan konten awal) --- */
+.auth-initializing #app-wrapper {
+    visibility: hidden; 
+    opacity: 0;
+}
+
 /* ------------------------------------------------ */
-/* --- PERBAIKAN STYLING HALAMAN LOGIN (DIKUATKAN) --- */
+/* --- STYLING HALAMAN LOGIN (PROPORSI NORMAL) --- */
 /* ------------------------------------------------ */
 .center-content {
     background: white; 
@@ -33,7 +39,7 @@ body {
 h1 { /* Judul Utama Login */
     color: #3b82f6;
     margin-bottom: 20px;
-    font-size: 2rem; /* Ukuran standar yang baik */
+    font-size: 2rem; 
 }
 
 .form-container h2 { /* Sub-judul "Masuk" */
@@ -50,7 +56,7 @@ h1 { /* Judul Utama Login */
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box; 
-    font-size: 1rem; /* Font input dikembalikan ke ukuran normal */
+    font-size: 1rem; 
 }
 
 .form-container button {
@@ -77,7 +83,7 @@ h1 { /* Judul Utama Login */
 
 
 /* ------------------------------------------------ */
-/* --- STYLING DASHBOARD MINIMALIS (TIDAK BERUBAH) --- */
+/* --- STYLING DASHBOARD MINIMALIS --- */
 /* ------------------------------------------------ */
 .full-content {
     background: white; 
@@ -102,7 +108,7 @@ h1 { /* Judul Utama Login */
     height: auto; 
 }
 
-/* Tulisan Header SANGAT KECIL (Sesuai Permintaan Sebelumnya) */
+/* Tulisan Header Sangat Kecil */
 .welcome-text {
     font-size: 0.7rem; 
     font-weight: 500;
