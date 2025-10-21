@@ -1,9 +1,20 @@
-// app.js (KODE TERAMAN: Tanpa ALLOWED_EMAILS)
-
-// ... (Import Firebase modules) ...
+// app.js
 
 // ===============================================
-// 1. KONFIGURASI FIREBASE ANDA 
+// Import Modul Firebase (Versi 12.4.0)
+// ===============================================
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    onAuthStateChanged, 
+    signOut 
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+
+// ===============================================
+// 1. KONFIGURASI FIREBASE ANDA (WAJIB GANTI!)
 // ===============================================
 const firebaseConfig = {
     apiKey: "AIzaSyAS5gU7KrFMyJ6S1QmHNfQo2yFcFLQlZJk", // Ganti dengan API Key Anda
@@ -12,47 +23,125 @@ const firebaseConfig = {
     // ... Detail konfigurasi lainnya ...
 };
 
-// ... (Variabel Auto-Logout dan Inisialisasi Firebase) ...
-// ... (Fungsi loginUser, logoutUser, resetLogoutTimer, stopLogoutTimer - sama) ...
-// ... (Event Listeners - sama) ...
+// ===============================================
+// 2. VARIABEL AUTO-LOGOUT
+// ===============================================
+const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000; // 5 menit
+let logoutTimer; 
+
 
 // ===============================================
-// 8. LOGIKA PEMBATASAN AKSES (MENGGUNAKAN CUSTOM CLAIMS DARI SERVER)
+// 3. INISIALISASI FIREBASE
 // ===============================================
 
-onAuthStateChanged(auth, async (user) => {
-    const authContainer = document.getElementById('auth-container');
-    const contentContainer = document.getElementById('content-container');
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app); 
+
+
+// ===============================================
+// 4. FUNGSI LOGIKA AUTENTIKASI (Standar)
+// ===============================================
+
+function loginUser() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
     const errorDisplay = document.getElementById('auth-error');
-    
     errorDisplay.textContent = ''; 
 
-    if (user) {
-        // --- LANGKAH KRITIS: Minta Izin dari Server ---
-        const idTokenResult = await user.getIdTokenResult(true);
-        // Cek apakah server telah memberi klaim 'allowed' = true
-        const isAllowed = idTokenResult.claims.allowed === true; 
+    if (!email || !password) {
+        errorDisplay.textContent = "Email dan Kata Sandi wajib diisi.";
+        return;
+    }
 
-        if (isAllowed) {
-            // Diizinkan: Tampilkan konten utama
-            authContainer.classList.add('hidden');
-            contentContainer.classList.remove('hidden');
-            
-            document.getElementById('user-email-display').textContent = user.email;
-            
-            resetLogoutTimer(); 
+    signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            console.log("Login berhasil.");
+        })
+        .catch((error) => {
+            let errorMessage = "Login Gagal. Email atau kata sandi salah.";
+            errorDisplay.textContent = errorMessage;
+        });
+}
 
-        } else {
-            // TIDAK Diizinkan: Akses ditolak karena tidak ada klaim dari server
-            stopLogoutTimer();
-            
-            setTimeout(() => {
-                logoutUser();
-                errorDisplay.textContent = `Akses ditolak. Akun Anda belum diizinkan oleh administrator.`;
-                authContainer.classList.remove('hidden');
-                contentContainer.classList.add('hidden');
-            }, 100); 
+function logoutUser() {
+    signOut(auth)
+        .then(() => {
+            console.log("Logout berhasil.");
+        })
+        .catch((error) => {
+            console.error("Error logout:", error);
+        });
+}
+
+
+// ===============================================
+// 5. FUNGSI AUTO-LOGOUT
+// ===============================================
+
+function resetLogoutTimer() {
+    clearTimeout(logoutTimer); 
+
+    logoutTimer = setTimeout(() => {
+        if (auth.currentUser) {
+            logoutUser();
+            alert('Anda telah di-logout secara otomatis karena tidak ada aktivitas selama ' + (INACTIVITY_TIMEOUT_MS / 60000) + ' menit.');
         }
+    }, INACTIVITY_TIMEOUT_MS);
+}
+
+function stopLogoutTimer() {
+    clearTimeout(logoutTimer);
+}
+
+
+// ===============================================
+// 6. EVENT LISTENERS
+// ===============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    const loginButton = document.getElementById('login-button');
+    const logoutButton = document.getElementById('logout-button');
+    
+    if (loginButton) {
+        loginButton.addEventListener('click', loginUser);
+    }
+    if (logoutButton) {
+        logoutButton.addEventListener('click', logoutUser);
+    }
+    
+    // Menambahkan Event Listener untuk mendeteksi aktivitas pengguna (Auto-logout)
+    const activityHandler = () => {
+        if (auth.currentUser) {
+            resetLogoutTimer();
+        }
+    };
+
+    document.addEventListener('mousemove', activityHandler);
+    document.addEventListener('keypress', activityHandler);
+    document.addEventListener('click', activityHandler);
+});
+
+
+// ===============================================
+// 7. LOGIKA AKSES (HANYA CEK STATUS LOGIN & ANTI-FLICKER)
+// ===============================================
+
+onAuthStateChanged(auth, (user) => {
+    const authContainer = document.getElementById('auth-container');
+    const contentContainer = document.getElementById('content-container');
+    
+    // --- KRITIS: TAMPILKAN UI SETELAH FIREBASE SELESAI CEK STATUS ---
+    document.body.classList.remove('auth-initializing'); 
+
+    if (user) {
+        // Otentikasi Berhasil: Tampilkan konten utama (Siapapun yang login, masuk)
+        authContainer.classList.add('hidden');
+        contentContainer.classList.remove('hidden');
+        
+        // Tampilkan email user di header
+        document.getElementById('user-email-display').textContent = user.email;
+        
+        resetLogoutTimer(); 
 
     } else {
         // Pengguna belum login (atau sudah logout)
