@@ -77,11 +77,11 @@ body:not(.auth-initializing) #app-wrapper:has(#auth-container:not(.hidden)) {
 
 #content-container {
     /* 
-      PERUBAHAN KRITIS: Properti max-width: 1000px; telah DIHAPUS 
+      PERBAIKAN YANG BENAR: Timpa max-width dari aturan sebelumnya
       agar dashboard dapat memanfaatkan lebar penuh layar.
     */
-    /* max-width: 1000px; --> DIHAPUS */
-    
+    max-width: none; /* <-- INI ADALAH PERUBAHAN YANG BENAR */
+
     height: 98vh; /* Menggunakan tinggi penuh untuk frame aplikasi */
     
     /* Menyesuaikan kembali tampilan Flexbox untuk dashboard */
@@ -89,7 +89,7 @@ body:not(.auth-initializing) #app-wrapper:has(#auth-container:not(.hidden)) {
     flex-direction: column;
     text-align: left; /* Teks konten di dashboard normal */
     
-    /* Mengatasi bug centering body saat max-width: 1000px */
+    /* Mengatasi bug centering body */
     width: 100%; /* Meregangkan container di dalam batas body flex */
     padding: 3px; /* Mengikuti style dashboard minimalis */
 }
